@@ -23,7 +23,6 @@ export class DefineWordComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.searchedWord = this.route.snapshot.paramMap.get('word');
     this.route.params.subscribe((params: Params) => {
 
@@ -37,11 +36,14 @@ export class DefineWordComponent implements OnInit {
             {
               this.wordDefinition = this.api.getGD(params['word']).subscribe(
                 res => {
+                  this.changeScss()
                   if (res['gd']['title'] === undefined) {
                     this.dictionaryData['Google'] = res['gd'];
                   }
                 }
-              )
+
+                )
+
               break;
             }
           case 'Oxford':
@@ -63,9 +65,25 @@ export class DefineWordComponent implements OnInit {
     );
   }
 
+
   onChangeDicitonaryChoice(dictionary) {
     this.dictionaryChoice = dictionary;
     console.log("you changed Dictionary : " + this.dictionaryChoice);
+    this.changeScss();
+  }
+
+  changeScss() {
+    let dictionaries = document.getElementsByClassName('dictionary-button')
+    for (let dictionary = 0; dictionary < dictionaries.length; dictionary++) {
+
+      if (dictionaries[dictionary].id === this.dictionaryChoice) {
+        document.getElementById(dictionaries[dictionary].id).style.backgroundColor = 'black';
+      } else {
+        console.log("called")
+
+        document.getElementById(dictionaries[dictionary].id).style.backgroundColor = 'transparent';
+      }
+    }
   }
 
 }

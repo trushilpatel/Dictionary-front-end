@@ -1,8 +1,8 @@
 <div class="container">
     <h1>{{searchedWord}}</h1>
-    <div class="row dictionary-buttons">
+    <div class="dictionary-buttons">
         <ng-container *ngFor="let dictionary of dictionaries">
-            <button class="btn" type="button" (click)="onChangeDicitonaryChoice(dictionary)">{{dictionary}}</button>
+            <button class="btn dictionary-button" type="button" [id]="dictionary" (click)="onChangeDicitonaryChoice(dictionary)">{{dictionary}}</button>
         </ng-container>
     </div>
 

@@ -1,8 +1,6 @@
 $btn-color:rgb(60, 64, 67);
 $text-color:rgb(218, 215, 210);
 $border-color: rgb(86, 91, 96);
-.dictionary-buttons {}
-
 .header {}
 
 h1 {
@@ -14,25 +12,21 @@ h1 {
 }
 
 .btn {
-    margin-top: 10px;
-    background-color: $btn-color;
+    margin: auto;
+    border-radius: unset;
     margin: auto;
     color: $text-color;
 }
 
-.dictionary-buttons {
-    margin: 10px;
-    padding-top: auto;
-    justify-items: auto;
-    align-items: center;
-}
+.dictionary-buttons {}
 
 .word-defnition-google {
     color: $text-color;
+    margin-bottom: 15%;
 }
 
 .item {
-    margin-top: 20px;
+    background-color: black;
 }
 
 .item-header {
