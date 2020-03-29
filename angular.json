@@ -69,7 +69,8 @@
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "fe:build:production"
+                            "browserTarget": "fe:build:production",
+                            "proxyConfig": "proxy.config.json"
                         }
                     }
                 },

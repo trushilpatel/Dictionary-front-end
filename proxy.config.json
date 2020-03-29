@@ -1,12 +1,9 @@
 {
-    "/api": {
-        "target": {
-            "host": "trushil-dictionary-back-end.herokuapp.com",
-            "protocol": "https:"
-        },
+    "/api/*": {
+        "target": "https://trushil-dictionary-back-end.herokuapp.com",
         "secure": false,
         "changeOrigin": true,
-        "logLevel": "info"
+        "logLevel": "debug"
     }
 
 }
