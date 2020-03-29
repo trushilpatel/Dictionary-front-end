@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
-
+  baseUrl = "https://trushil-dictionary-back-end.herokuapp.com";
   constructor(private http: HttpClient) { }
 
   getGD(word){
-    return this.http.get("/api/gd/" + word);
+    return this.http.get(this.baseUrl + "/api/gd/" + word);
   }
 
 }

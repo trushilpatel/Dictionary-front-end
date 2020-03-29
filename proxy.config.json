@@ -1,9 +1,3 @@
 {
-    "/api/*": {
-        "target": "https://trushil-dictionary-back-end.herokuapp.com",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
-    }
 
 }
