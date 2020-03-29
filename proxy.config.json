@@ -1,5 +1,12 @@
 {
     "/api": {
-        "target": "http://127.0.0.1:5000/"
+        "target": {
+            "host": "trushils-dictionary.herokuapp.com",
+            "protocol": "https:"
+        },
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "info"
     }
+
 }
