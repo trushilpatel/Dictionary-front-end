@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class JsonToArrayGooglePipe implements PipeTransform {
 
   transform(value: {}, ...args: unknown[]): unknown {
-    console.log(value);
     let data = [];
 
     for (let sense in value){
@@ -15,7 +14,6 @@ export class JsonToArrayGooglePipe implements PipeTransform {
         'def_exa': value[sense]
     });
     }
-    console.log(data)
     return data;
   }
 

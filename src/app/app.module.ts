@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { WordHistoryComponent } from './word-history/word-history.component';
 import { FavouritWordsComponent } from './favourit-words/favourit-words.component';
 import { DefineWordComponent } from './define-word/define-word.component';
-import { JsonToArrayGooglePipe } from './core/pipes/json-to-array-google.pipe';
+import { JsonToArrayGooglePipe } from './core/pipes/jsonToArrayGooglePipe/json-to-array-google.pipe';
 
 @NgModule({
   declarations: [

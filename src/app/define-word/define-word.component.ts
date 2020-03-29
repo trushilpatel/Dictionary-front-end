@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
-import { ApiService } from '../core/services/api.service';
+import { ApiService } from '../core/services/api/api.service';
 
 @Component({
   selector: 'app-define-word',
