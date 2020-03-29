@@ -9,7 +9,6 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "preinstall": "",
-        "ng-high-memory": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build ",
         "postinstall": "ng build ng-high-memory --prod --aot"
     },
     "private": true,
