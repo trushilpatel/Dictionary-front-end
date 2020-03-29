@@ -1,7 +1,7 @@
 {
     "/api": {
         "target": {
-            "host": "trushils-dictionary.herokuapp.com",
+            "host": "trushil-dictionary-back-end.herokuapp.com",
             "protocol": "https:"
         },
         "secure": false,
