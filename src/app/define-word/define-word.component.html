@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>{{searchedWord}}</h1>
+    <div class="row dictionary-buttons">
+        <ng-container *ngFor="let dictionary of dictionaries">
+            <button class="btn" type="button" (click)="onChangeDicitonaryChoice(dictionary)">{{dictionary}}</button>
+        </ng-container>
+    </div>
+
+    <ng-container *ngIf="dictionaryChoice == 'Google'">
+
+        <div class="word-defnition-google">
+            <ng-container *ngFor="let item of dictionaryData['Google']">
+                <div class="item">
+                    <div *ngIf="item['word'] !== undefined" class=" item-header">
+                        <span class="item-header-word"> {{item['word']}}</span>
+                        <span class="item-header-phonetic" *ngIf="item['phonetic'] !== undefined"> {{item['phonetic']}}</span>
+                    </div>
+                    <div class="item-def-exa">
+
+                        <ng-container *ngFor="let data of item['meaning'] | jsonToArrayGoogle">
+                            <div class="meaning">
+                                <div class="sense">
+                                    <span>{{data['sense']}}</span>
+                                </div>
+                                <ng-container *ngFor="let de_ex of data['def_exa']">
+                                    <div>
+                                        <div class="definition">
+                                            <span *ngIf="de_ex['definition'] !== undefined">{{de_ex['definition']}}</span>
+                                        </div>
+                                        <div class="example">
+                                            <span *ngIf="de_ex['example'] !== undefined">{{de_ex['example']}}</span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                        <div *ngIf="item['origin'] !== undefined" class="origin">
+                            <span>Origin : </span>
+                            <span> {{item['origin']}}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+</div>

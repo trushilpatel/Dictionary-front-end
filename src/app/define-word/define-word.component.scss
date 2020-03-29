@@ -1,0 +1,84 @@
+$btn-color:rgb(60, 64, 67);
+$text-color:rgb(218, 215, 210);
+$border-color: rgb(86, 91, 96);
+.dictionary-buttons {}
+
+.header {}
+
+h1 {
+    color: $text-color;
+    color: #ad5959;
+    border-bottom: 1px solid $border-color;
+    margin: 10px;
+    padding-bottom: 13px;
+}
+
+.btn {
+    margin-top: 10px;
+    background-color: $btn-color;
+    margin: auto;
+    color: $text-color;
+}
+
+.dictionary-buttons {
+    margin: 10px;
+    padding-top: auto;
+    justify-items: auto;
+    align-items: center;
+}
+
+.word-defnition-google {
+    color: $text-color;
+}
+
+.item {
+    margin-top: 20px;
+}
+
+.item-header {
+    padding: 20px;
+    margin-left: auto;
+    width: 100%;
+    color: #629a62;
+    border-bottom: 3px solid #629a62;
+    font-size: 2em;
+    ;
+}
+
+.item-def-exa {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-left: 3px solid #629a62;
+    padding: 10px;
+}
+
+.meaning {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.sense {
+    font-size: 1.5em;
+    color: #6695c7;
+    border-bottom: 2px solid #6695c7;
+    padding: 7px;
+}
+
+.definition {
+    color: #9c6bc9;
+    padding: 7px;
+    padding-left: 20px;
+    border-left: 3px solid #6695c7;
+}
+
+.example {
+    color: #6f72e8;
+    border-left: 3px solid #6695c7;
+    padding: 7px;
+    padding-left: 35px;
+}
+
+.origin {
+    color: #869199;
+}

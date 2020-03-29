@@ -1,0 +1,18 @@
+$background-color: rgb(44, 46, 48);
+$border-color: rgb(86, 91, 96);
+#footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: rgb(218, 215, 210);
+    background-color: rgb(44, 46, 48);
+    border-top: 1px solid $border-color;
+}
+
+a {
+    color: rgb(186, 181, 171);
+    &:hover {
+        color: rgb(218, 215, 210);
+    }
+}

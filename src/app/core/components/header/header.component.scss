@@ -1,0 +1,49 @@
+$border-color: rgb(86, 91, 96);
+.header {
+    border-bottom: 1px solid $border-color;
+    background-color: rgb(0, 0, 0);
+    color: rgb(218, 215, 210);
+    padding-bottom: 15px;
+}
+
+.header a {
+    color: rgb(186, 181, 171);
+    &:hover {
+        color: rgb(218, 215, 210);
+    }
+}
+
+.mainLink {
+    padding: 3px;
+    margin: 5px;
+}
+
+.dictionary a {
+    color: rgb(218, 215, 210);
+}
+
+.input {
+    width: 70%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    align-self: center;
+}
+
+.search {
+    width: 100%;
+    margin: auto;
+}
+
+.btn {
+    color: white;
+}
+
+.input-search {
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    margin-left: auto;
+    border-bottom: 1px $border-color solid;
+    background-color: black;
+}
