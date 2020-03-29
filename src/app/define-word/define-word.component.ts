@@ -37,8 +37,9 @@ export class DefineWordComponent implements OnInit {
             {
               this.wordDefinition = this.api.getGD(params['word']).subscribe(
                 res => {
-                  this.dictionaryData['Google'] = res['gd'];
-                  console.log(this.dictionaryData);
+                  if (res['gd']['title'] === undefined) {
+                    this.dictionaryData['Google'] = res['gd'];
+                  }
                 }
               )
               break;

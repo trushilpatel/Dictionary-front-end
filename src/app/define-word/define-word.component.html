@@ -8,7 +8,7 @@
 
     <ng-container *ngIf="dictionaryChoice == 'Google'">
 
-        <div class="word-defnition-google">
+        <div class="word-defnition-google" *ngIf="dictionaryData['Google'] !== undefined">
             <ng-container *ngFor="let item of dictionaryData['Google']">
                 <div class="item">
                     <div *ngIf="item['word'] !== undefined" class=" item-header">
