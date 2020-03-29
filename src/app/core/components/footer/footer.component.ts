@@ -16,14 +16,18 @@ export class FooterComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    if (this.body.scrollHeight + 200 <= this.html.clientHeight) {
+    if (window.innerHeight > this.body.clientHeight + 200) {
       document.getElementById('footer').style.position = 'fixed';
       document.getElementById('footer').style.left = '0';
       document.getElementById('footer').style.bottom = '0';
+      console.log("footer : ",window.innerHeight , this.body.clientHeight)
     } else {
-      document.getElementById('footer').style.position = 'none';
-      document.getElementById('footer').style.left = 'none';
-      document.getElementById('footer').style.bottom = 'none';
+      document.getElementById('footer').style.position = 'unset';
+      document.getElementById('footer').style.left = 'unset';
+      document.getElementById('footer').style.bottom = 'unset';
+      console.log("hello this is footer")
+      console.log("footer : ",window.innerHeight , this.body.clientHeight)
+
     }
   }
 

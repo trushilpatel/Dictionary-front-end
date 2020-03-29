@@ -79,8 +79,6 @@ export class DefineWordComponent implements OnInit {
       if (dictionaries[dictionary].id === this.dictionaryChoice) {
         document.getElementById(dictionaries[dictionary].id).style.backgroundColor = 'black';
       } else {
-        console.log("called")
-
         document.getElementById(dictionaries[dictionary].id).style.backgroundColor = 'transparent';
       }
     }
