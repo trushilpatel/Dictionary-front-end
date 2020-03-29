@@ -9,7 +9,7 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "preinstall": "",
-        "postinstall": "ng build ng-high-memory --prod --aot"
+        "postinstall": "ng build --prod --aot"
     },
     "private": true,
     "dependencies": {
