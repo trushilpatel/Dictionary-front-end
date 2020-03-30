@@ -48,6 +48,11 @@
                             <div class="meaning">
                                 <div class="sense">
                                     <span>{{data['sense']}}</span>
+                                    <span class="word-heading">
+                                        <button class="audio" style="background-color: #181a1b;" (click)="speakWord(searchedWord)">
+                                            <i class="fa fa-volume-up"></i>
+                                        </button>
+                                    </span>
                                 </div>
                                 <ng-container *ngFor="let de_ex of data['def_exa']">
                                     <div>

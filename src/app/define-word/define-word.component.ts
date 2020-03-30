@@ -10,7 +10,7 @@ declare const responsiveVoice: any;
 })
 export class DefineWordComponent implements OnInit {
   dictionaries = ['Google', 'Oxford', 'MW'];
-  dictionaryChoice = 'Oxford';
+  dictionaryChoice = 'Google';
   dictionaryData = {};
   gotAudio = false; 
 
