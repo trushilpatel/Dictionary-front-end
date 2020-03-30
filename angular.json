@@ -31,7 +31,9 @@
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "src/assets/responsivevoice.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -94,7 +96,9 @@
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "src/assets/responsivevoice.js"
+                        ]
                     }
                 },
                 "lint": {

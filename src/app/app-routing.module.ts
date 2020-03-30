@@ -8,6 +8,7 @@ import { DefineWordComponent } from './define-word/define-word.component';
 
 const routes: Routes = [
   { path: 'define/:word', component: DefineWordComponent },
+  { path: 'define/:destLanguage/:word', component: DefineWordComponent},
   { path: 'home', component: HomeComponent },
   { path: 'history', component: WordHistoryComponent },
   { path: 'favourite', component: FavouritWordsComponent },

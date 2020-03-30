@@ -1,24 +1,12 @@
 $btn-color:rgb(60, 64, 67);
 $text-color:rgb(218, 215, 210);
 $border-color: rgb(86, 91, 96);
-.header {}
-
-h1 {
-    color: $text-color;
-    color: #ad5959;
-    border-bottom: 1px solid $border-color;
-    margin: 10px;
-    padding-bottom: 13px;
-}
-
 .btn {
     margin: auto;
     border-radius: unset;
     margin: auto;
     color: $text-color;
 }
-
-.dictionary-buttons {}
 
 .word-defnition-google {
     color: $text-color;
@@ -61,7 +49,7 @@ h1 {
 
 .definition {
     color: #9c6bc9;
-    padding: 7px;
+    padding-top: 20px;
     padding-left: 20px;
     border-left: 3px solid #6695c7;
 }
@@ -69,10 +57,48 @@ h1 {
 .example {
     color: #6f72e8;
     border-left: 3px solid #6695c7;
-    padding: 7px;
+    padding-top: 7px;
     padding-left: 35px;
 }
 
 .origin {
     color: #869199;
+}
+
+.word-heading {
+    font-size: 2em;
+    color: $text-color;
+    color: #ad5959;
+    margin: auto;
+    padding: auto;
+    padding-bottom: 13px;
+}
+
+.words-heading {
+    border-bottom: 1px solid $border-color;
+    margin: auto;
+    padding: 15px;
+}
+
+.word-heading-div {
+    padding: auto;
+    margin-right: auto;
+}
+
+.synonyms {
+    color: #ad5959;
+    padding: 7px;
+    padding-left: 20px;
+    border-left: 3px solid #6695c7;
+}
+
+.synonyms-words {
+    padding-left: 35px;
+    color: #37a3b4;
+}
+
+.audio {
+    color: $border-color;
+    background-color: black;
+    border: none;
 }

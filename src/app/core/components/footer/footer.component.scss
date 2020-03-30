@@ -8,6 +8,12 @@ $border-color: rgb(86, 91, 96);
     border-top: 1px solid $border-color;
 }
 
+.footer {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    max-height: auto;
+}
+
 a {
     color: rgb(186, 181, 171);
     &:hover {
