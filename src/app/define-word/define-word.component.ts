@@ -28,8 +28,14 @@ export class DefineWordComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchedWord = this.route.snapshot.paramMap.get("word");
-    this.route.params.subscribe((params: Params) => {
+    this.searchedWord = this.route.snapshot.paramMap.get("word").trim();
+
+    this.fhApi.addHistoryWord(this.searchedWord).subscribe(
+      res => {
+        console.log(this.searchedWord, " Added to your History")
+      })
+    
+      this.route.params.subscribe((params: Params) => {
       if (params["word"] == "") {
         alert("please enter valid Word!!!");
       } else {
