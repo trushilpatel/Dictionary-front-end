@@ -1,195 +1,298 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="container">
-    <ng-container *ngIf="dictionaryData['Translate'] !== undefined">
-        <div class="words-heading">
-            <div class="row">
-                <div class="word-heading-div">
-                    <span class="word-heading">{{dictionaryData['Translate']['English']}}</span>
-                    <span class="word-heading">
-                        <button class="audio" style="background-color: #181a1b;" (click)="speakWord(searchedWord)">
-                            <i class="fa fa-volume-up"></i>
-                        </button>
-                    </span>
-                </div>
-                <div class="word-heading-div">
-                    <span class="word-heading">{{dictionaryData['Translate']['Gujarati']}}</span>
-                </div>
-                <div class="word-heading-div">
-                    <span class="word-heading">{{dictionaryData['Translate']['Hindi']}}</span>
-                </div>
-            </div>
+  <ng-container *ngIf="dictionaryData['Translate'] !== undefined">
+    <div class="words-heading">
+      <div class="row">
+        <div class="word-heading-div">
+          <span class="word-heading">{{dictionaryData['Translate']['English']}}</span>
+          <span class="word-heading">
+            <button *ngIf="favouriteWord === true" class="favourite" style="color: burlywood;"
+              (click)="setFavouriteWord()">
+              <i class="fa fa-star"></i>
+            </button>
+            <button *ngIf="favouriteWord === false" class="favourite" (click)="setFavouriteWord()">
+              <i class="fa fa-star"></i>
+            </button>
+          </span>
+          <span class="word-heading">
+            <button class="audio" style="background-color: #181a1b;" (click)="speakWord(searchedWord)">
+              <i class="fa fa-volume-up"></i>
+            </button>
+          </span>
         </div>
-    </ng-container>
-
-    <div class="dictionary-buttons">
-        <ng-container *ngFor="let dictionary of dictionaries">
-            <button class="btn dictionary-button" type="button" [id]="dictionary" (click)="onChangeDicitonaryChoice(dictionary)">{{dictionary}}</button>
-        </ng-container>
+        <div class="word-heading-div">
+          <span class="word-heading">{{dictionaryData['Translate']['Gujarati']}}</span>
+        </div>
+        <div class="word-heading-div">
+          <span class="word-heading">{{dictionaryData['Translate']['Hindi']}}</span>
+        </div>
+      </div>
     </div>
+  </ng-container>
 
-    <ng-container *ngIf="dictionaryChoice == 'Google'">
-
-        <div class="word-defnition-google" *ngIf="dictionaryData['Google'] !== undefined">
-            <ng-container *ngFor="let item of dictionaryData['Google']">
-                <div class="item">
-                    <div *ngIf="item['word'] !== undefined" class=" item-header">
-                        <span class="item-header-word"> {{item['word']}}</span>
-                        <span class="item-header-word">
-                            <button class="audio" (click)="speakWord(item['word'])"><i class="fa fa-volume-up"></i>
-                            </button>
-                        </span>
-                        <span class="item-header-phonetic" *ngIf="item['phonetic'] !== undefined">
-                            {{item['phonetic']}}</span>
-                    </div>
-                    <div class="item-def-exa">
-
-                        <ng-container *ngFor="let data of item['meaning'] | jsonToArrayGoogle">
-                            <div class="meaning">
-                                <div class="sense">
-                                    <span>{{data['sense']}}</span>
-                                    <span class="word-heading">
-                                        <button class="audio" style="background-color: #181a1b;" (click)="speakWord(searchedWord)">
-                                            <i class="fa fa-volume-up"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                                <ng-container *ngFor="let de_ex of data['def_exa']">
-                                    <div>
-                                        <div class="definition">
-                                            <span *ngIf="de_ex['definition'] !== undefined">{{de_ex['definition']}}</span>
-                                        </div>
-                                        <div class="example">
-                                            <span *ngIf="de_ex['example'] !== undefined">{{de_ex['example']}}</span>
-                                        </div>
-                                    </div>
-                                </ng-container>
-                            </div>
-                        </ng-container>
-                        <div *ngIf="item['origin'] !== undefined" class="origin">
-                            <span>Origin : </span>
-                            <span> {{item['origin']}}</span>
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-        </div>
+  <div class="dictionary-buttons">
+    <ng-container *ngFor="let dictionary of dictionaries">
+      <button class="btn dictionary-button" type="button" [id]="dictionary"
+        (click)="onChangeDicitonaryChoice(dictionary)">{{dictionary}}</button>
     </ng-container>
+  </div>
 
-    <ng-container class="word-defnition-google" *ngIf="dictionaryChoice == 'Oxford' && dictionaryData['Oxford'] !== undefined">
-        <div *ngIf="dictionaryData['Oxford']['results'] !== undefined">
-            <ng-container *ngFor="let result of dictionaryData['Oxford']['results']">
-                <div class="item">
+  <ng-container *ngIf="dictionaryChoice == 'Google'">
 
-                    <div class="item-header">
-                        <span class="item-header-word">{{result['word']}}</span>
-                        <span>
-                            <button class="audio" (click)="speakWord(result['word'])"><i class="fa fa-volume-up"></i>
-                            </button>
-                        </span>
+    <div class="word-definition-google" *ngIf="dictionaryData['Google'] !== undefined">
+      <ng-container *ngFor="let item of dictionaryData['Google']">
+        <div class="item">
+          <div *ngIf="item['word'] !== undefined" class=" item-header">
+            <span class="item-header-word"> {{item['word']}}</span>
+            <span class="item-header-word">
+              <button class="audio" (click)="speakWord(item['word'])"><i class="fa fa-volume-up"></i>
+              </button>
+            </span>
+            <span class="item-header-phonetic" *ngIf="item['phonetic'] !== undefined">
+              {{item['phonetic']}}</span>
+          </div>
+          <div class="item-def-exa">
+
+            <ng-container *ngFor="let data of item['meaning'] | jsonToArrayGoogle">
+              <div class="meaning">
+                <div class="sense">
+                  <span>{{data['sense']}}</span>
+                  <span>
+                    <button class="audio" (click)="speakWord(searchedWord)">
+                      <i class="fa fa-volume-up"></i>
+                    </button>
+                  </span>
+                </div>
+                <ng-container *ngFor="let de_ex of data['def_exa']">
+                  <div>
+                    <div class="definition">
+                      <span *ngIf="de_ex['definition'] !== undefined">{{de_ex['definition']}}</span>
                     </div>
+                    <div class="example">
+                      <span *ngIf="de_ex['example'] !== undefined">{{de_ex['example']}}</span>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </ng-container>
+            <div *ngIf="item['origin'] !== undefined" class="origin">
+              <span>Origin : </span>
+              <span> {{item['origin']}}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
 
-                    <div class="item-def-exa">
+  <ng-container class="word-definition-google"
+    *ngIf="dictionaryChoice == 'Oxford' && dictionaryData['Oxford'] !== undefined">
+    <div *ngIf="dictionaryData['Oxford']['results'] !== undefined">
+      <ng-container *ngFor="let result of dictionaryData['Oxford']['results']">
+        <div class="item">
 
-                        <ng-container *ngFor="let lexicalEntry of result['lexicalEntries']">
-                            <div class="meaning">
+          <div class="item-header">
+            <span class="item-header-word">{{result['word']}}</span>
+            <span>
+              <button class="audio" (click)="speakWord(result['word'])"><i class="fa fa-volume-up"></i>
+              </button>
+            </span>
+          </div>
 
-                                <div class="sense" *ngIf="lexicalEntry['lexicalCategory']['text'] !== undefined">
-                                    {{lexicalEntry['lexicalCategory']['text']}}
-                                    <ng-container *ngIf="lexicalEntry['pronunciations'] !== undefined">
+          <div class="item-def-exa">
 
-                                        <span *ngIf="lexicalEntry['pronunciations'][0]['audioFile'] !== undefined">
-                                            <button class="audio" (click)="speakWord(result['word'])"><i
-                                                    class="fa fa-volume-up"></i>
-                                            </button>
-                                        </span>
-                                        <span *ngIf="lexicalEntry['pronunciations'][0]['dialicts'] !== undefined">
-                                            {{lexicalEntry['pronunciations'][0]['dialicts'][0]}}
-                                        </span>
-                                        <span *ngIf="lexicalEntry['pronunciations'][0]['phoneticSpelling'] !== undefined">
-                                            {{lexicalEntry['pronunciations'][0]['phoneticSpelling']}}
-                                        </span>
-                                    </ng-container>
-                                </div>
+            <ng-container *ngFor="let lexicalEntry of result['lexicalEntries']">
+              <div class="meaning">
 
-                                <ng-container *ngIf="lexicalEntry['entries'] !== undefined">
-                                    <ng-container *ngFor="let entry of lexicalEntry['entries']">
-                                        <ng-container *ngIf="entry['senses'] !== undefined">
-                                            <div *ngFor="let sense of entry['senses']">
+                <div class="sense" *ngIf="lexicalEntry['lexicalCategory']['text'] !== undefined">
+                  {{lexicalEntry['lexicalCategory']['text']}}
+                  <ng-container *ngIf="lexicalEntry['pronunciations'] !== undefined">
 
-                                                <ng-container *ngIf="sense['definitions'] !== undefined">
-                                                    <div *ngFor="let definition of sense['definitions']" class="definition">
-                                                        {{definition}}
-                                                    </div>
-                                                </ng-container>
-                                                <!---
+                    <span *ngIf="lexicalEntry['pronunciations'][0]['audioFile'] !== undefined">
+                      <button class="audio" (click)="speakWord(result['word'])"><i class="fa fa-volume-up"></i>
+                      </button>
+                    </span>
+                    <span *ngIf="lexicalEntry['pronunciations'][0]['dialicts'] !== undefined">
+                      {{lexicalEntry['pronunciations'][0]['dialicts'][0]}}
+                    </span>
+                    <span *ngIf="lexicalEntry['pronunciations'][0]['phoneticSpelling'] !== undefined">
+                      {{lexicalEntry['pronunciations'][0]['phoneticSpelling']}}
+                    </span>
+                  </ng-container>
+                </div>
+
+                <ng-container *ngIf="lexicalEntry['entries'] !== undefined">
+                  <ng-container *ngFor="let entry of lexicalEntry['entries']">
+                    <ng-container *ngIf="entry['senses'] !== undefined">
+                      <div *ngFor="let sense of entry['senses']">
+
+                        <ng-container *ngIf="sense['definitions'] !== undefined">
+                          <div *ngFor="let definition of sense['definitions']" class="definition">
+                            {{definition}}
+                          </div>
+                        </ng-container>
+                        <!---
 																								<ng-container *ngIf="sense['shortDefinitions'] !== undefined">
 																										<div class="definition" *ngFor="let shortDefinition of sense['shortDefinitions']">
 																												{{shortDefinition}}
 																										</div>
 																								</ng-container>
 -->
-                                                <ng-container *ngIf="sense['examples'] !== undefined">
-                                                    <div class="example" *ngFor="let example of sense['examples']">
-                                                        {{example['text']}}
-                                                    </div>
-                                                </ng-container>
+                        <ng-container *ngIf="sense['examples'] !== undefined">
+                          <div class="example" *ngFor="let example of sense['examples']">
+                            {{example['text']}}
+                          </div>
+                        </ng-container>
 
-                                                <ng-container *ngIf="sense['subsenses'] !== undefined">
-                                                    <div class="sub-definition" *ngFor="let subsense of sense['subsenses']">
+                        <ng-container *ngIf="sense['subsenses'] !== undefined">
+                          <div class="sub-definition" *ngFor="let subsense of sense['subsenses']">
 
-                                                        <ng-container *ngIf="subsense['definitions'] !== undefined">
-                                                            <div class="definition" *ngFor="let definition of subsense['definitions']">
-                                                                {{definition}}
-                                                            </div>
-                                                        </ng-container>
-                                                        <!---
+                            <ng-container *ngIf="subsense['definitions'] !== undefined">
+                              <div class="definition" *ngFor="let definition of subsense['definitions']">
+                                {{definition}}
+                              </div>
+                            </ng-container>
+                            <!---
 																												<ng-container *ngIf="subsense['shortDefinitions'] !== undefined">
 																														<div class="definition" *ngFor="let shortDefinition of subsense['shortDefinitions']">
 																																{{shortDefinition}}
 																														</div>
 																												</ng-container>
 -->
-                                                        <ng-container *ngIf="subsense['examples'] !== undefined">
-                                                            <div class="example" *ngFor="let example of subsense['examples']">
-                                                                {{example['text']}}
-                                                            </div>
-                                                        </ng-container>
+                            <ng-container *ngIf="subsense['examples'] !== undefined">
+                              <div class="example" *ngFor="let example of subsense['examples']">
+                                {{example['text']}}
+                              </div>
+                            </ng-container>
 
-                                                    </div>
-                                                </ng-container>
-
-                                                <ng-container *ngIf="sense['synonyms'] !== undefined">
-                                                    <div class='synonyms'>
-                                                        <div style="font-size: 1.5em;">synonyms:</div>
-                                                        <div class="synonyms-words">
-                                                            <ng-container *ngFor="let synonym of sense['synonyms']">
-                                                                <span>{{synonym['text']}}, </span>
-                                                            </ng-container>
-                                                        </div>
-                                                    </div>
-                                                </ng-container>
-
-                                            </div>
-                                        </ng-container>
-
-                                        <ng-container *ngIf="entry['etymologies'] !== undefined">
-                                            <div class="origin" *ngFor="let etymology of entry['etymologies']">
-                                                <span>Origin : {{etymology}}</span>
-                                            </div>
-                                        </ng-container>
-                                    </ng-container>
-                                </ng-container>
-
-                            </div>
+                          </div>
                         </ng-container>
-                    </div>
-                </div>
 
+                        <ng-container *ngIf="sense['synonyms'] !== undefined">
+                          <div class='synonyms'>
+                            <div style="font-size: 1.5em;">synonyms:</div>
+                            <div class="synonyms-words">
+                              <ng-container *ngFor="let synonym of sense['synonyms']">
+                                <span>{{synonym['text']}}, </span>
+                              </ng-container>
+                            </div>
+                          </div>
+                        </ng-container>
+
+                      </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="entry['etymologies'] !== undefined">
+                      <div class="origin" *ngFor="let etymology of entry['etymologies']">
+                        <span>Origin : {{etymology}}</span>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+
+              </div>
             </ng-container>
-
+          </div>
         </div>
-    </ng-container>
+
+      </ng-container>
+
+    </div>
+  </ng-container>
+
+  <ng-container class="word-definition-google" *ngIf="dictionaryChoice == 'MW' && dictionaryData['MW'] !== undefined">
+    <div *ngFor="let item of dictionaryData['MW']">
+      <div class="item">
+
+        <div *ngIf="item['fl'] !== undefined" class="item-header">
+          <span class="item-header-word">
+            {{item['fl']}}
+          </span>
+          <span class="item-header-word">
+            <button class="audio" (click)="speakWord(searchedWord)"><i class="fa fa-volume-up"></i>
+            </button>
+          </span>
+          <ng-container *ngIf="item['meta']['offensive'] !== undefined && item['meta']['offensive'] == true"
+            class="item-header-word">
+            <span>offensive</span>
+          </ng-container>
+        </div>
+
+        <ng-container *ngIf="item['def'] !== undefined">
+          <ng-container *ngFor="let def of item['def']">
+            <ng-container *ngFor="let sseq of def['sseq']">
+              <ng-container *ngFor="let sse of sseq">
+                <ng-container *ngIf="sse[0] == 'sense' && sse[1]['dt'] !== undefined">
+                  <ng-container *ngFor="let dt of sse[1]['dt']">
+
+                    <div *ngIf="dt[0] === 'text' && dt[1] !== undefined">
+                      <div class="definition">
+                        {{dt[1]}}
+                      </div>
+                    </div>
+
+                    <ng-container *ngIf="dt[0] === 'vis' && dt[1] !== undefined">
+                      <ng-container *ngFor="let t of dt[1]">
+                        <ng-container *ngIf="t['t'] !== undefined">
+                          <div class="example">
+                            {{t['t']}}
+                          </div>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="dt[0] === 'uns' && dt[1] !== undefined">
+                      <ng-container *ngFor="let d of dt[1]">
+                        <ng-container *ngFor="let dd of d">
+
+                          <div *ngIf="dd[0] === 'text' && dd[1] !== undefined">
+                            <div class="definition">
+                              {{dd[1]}}
+                            </div>
+                          </div>
+
+                          <ng-container *ngIf="dd[0] === 'vis' && dd[1] !== undefined">
+                            <ng-container *ngFor="let t of dd[1]">
+                              <ng-container *ngIf="t['t'] !== undefined">
+                                <div class="example">
+                                  {{t['t']}}
+                                </div>
+                              </ng-container>
+                            </ng-container>
+                          </ng-container>
+
+
+                        </ng-container>
+
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngFor="let shortde of item['shortdef']">
+          <div class="definition">
+            {{shortde}}
+          </div>
+        </ng-container>
+
+        <div *ngIf="item['meta']['stems'] !== undefined" class="synonyms">
+          <span>Stems : </span>
+          <div class="synonyms-words">
+            <ng-container *ngFor="let stem of item['meta']['stems']">
+              <span> {{stem}},</span>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </ng-container>
 
 
 </div>

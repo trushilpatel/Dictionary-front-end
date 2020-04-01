@@ -25,7 +25,6 @@ export class FooterComponent implements OnInit, DoCheck {
       document.getElementById('footer').style.position = 'unset';
       document.getElementById('footer').style.left = 'unset';
       document.getElementById('footer').style.bottom = 'unset';
-      console.log("hello this is footer")
   //    console.log("footer : ",this.html.scrollHeight - this.html.clientHeight)
 
     }

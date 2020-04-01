@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment'
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ApiService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getGD(word) {
     return this.http.get(environment.apiUrl + "/api/gd/" + word);
@@ -23,9 +22,14 @@ export class ApiService {
 
   getTranslation(word, destLanguage = undefined) {
     if (destLanguage === undefined) {
-      return this.http.get(environment.apiUrl + "/api/trans/" + word)
+      return this.http.get(environment.apiUrl + "/api/trans/" + word);
     }
-    return this.http.get(environment.apiUrl + "/api/trans/" + destLanguage + '/' + word);
+    return this.http.get(
+      environment.apiUrl + "/api/trans/" + destLanguage + "/" + word
+    );
   }
 
+  authenticatedUser() {
+    return this.http.get(environment.apiUrl + "/api/login");
+  }
 }
