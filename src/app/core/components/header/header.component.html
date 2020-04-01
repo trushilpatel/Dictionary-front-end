@@ -1,29 +1,42 @@
 <div class="navbar header">
-    <div class="container-fluid row">
-        <div class="navbar-header dictionary">
-            <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">Dictionary</a>
+  <div class="container-fluid row">
+    <div class="main-header row">
+
+      <div class="navbar-header dictionary">
+        <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">Dictionary</a>
+      </div>
+      <div class="nav" style="margin-right: auto;">
+        <li class="mainLink"><a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a></li>
+        <li class="mainLink"><a [routerLink]="['/favourite']" routerLinkActive="router-link-active">Favourite</a></li>
+        <li class="mainLink"><a [routerLink]="['/history']" routerLinkActive="router-link-active">History</a></li>
+      </div>
+      <div *ngIf="userExist === 'true'" class="nav" style="margin-left: auto;">
+        <div class="input-group-btn" style="border: 1px solid whitesmoke; border-radius: 5px; margin: auto;">
+          <button class="btn btn-default " type="submit" (click)="onLogout()">
+            Log Out
+          </button>
         </div>
-        <div class="nav" style="margin-right: auto;">
-            <li class="mainLink"><a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a></li>
-            <li class="mainLink"><a [routerLink]="['/favourite']" routerLinkActive="router-link-active">Favourite</a></li>
-            <li class="mainLink"><a [routerLink]="['/history']" routerLinkActive="router-link-active">History</a></li>
-        </div>
-        <!---
+      </div>
+    </div>
+    <!---
         <ul class="nav navbar-right">
             <li class="mainLink"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li class="mainLink"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
         -->
-        <div class="input-group" style="margin: auto;">
-            <form (ngSubmit)="onClickSearch()" class="row search">
-                <input type="text" [(ngModel)]="searchWord" [ngModelOptions]="{standalone: true}" class=" input-search col" style="margin-right: 10px; color: whitesmoke;" placeholder="Search">
-                <div class="input-group-btn" style="border: 1px solid whitesmoke; border-radius: 5px; margin: auto;">
-                    <button class="btn btn-default " type="submit" ((click)="onClickSearch()">
-                      Search
-                    </button>
-                </div>
-            </form>
+    <div class="main-header">
+      <div class="input-group" style="margin: auto;">
+        <form (ngSubmit)="onClickSearch()" class="row search">
+          <input type="text" [(ngModel)]="searchWord" [ngModelOptions]="{standalone: true}" class=" input-search col"
+            style="margin-right: 10px; color: whitesmoke;" placeholder="Search">
+          <div class="input-group-btn" style="border: 1px solid whitesmoke; border-radius: 5px; margin: auto;">
+            <button class="btn btn-default " type="submit" (click)="onClickSearch()">
+              Search
+            </button>
+          </div>
+        </form>
 
-        </div>
+      </div>
     </div>
+  </div>
 </div>

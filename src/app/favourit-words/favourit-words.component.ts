@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { ApiService } from "../core/services/api/api.service";
+import { FhService } from "../core/services/FH-service/fh.service";
 
 @Component({
-  selector: 'app-favourit-words',
-  templateUrl: './favourit-words.component.html',
-  styleUrls: ['./favourit-words.component.scss']
+  selector: "app-favourit-words",
+  templateUrl: "./favourit-words.component.html",
+  styleUrls: ["./favourit-words.component.scss"]
 })
 export class FavouritWordsComponent implements OnInit {
+  favouriteWords: any;
 
-  constructor() { }
+  constructor(private fhApi: FhService) {}
 
   ngOnInit(): void {
+    this.fhApi.getFavouriteWords().subscribe(res => {
+      this.favouriteWords = res["rows"];
+    });
   }
-
 }

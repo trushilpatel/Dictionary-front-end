@@ -1,0 +1,19 @@
+$background-color: rgb(44, 46, 48);
+$border-color: rgb(86, 91, 96);
+
+.words {
+  border-left: 3px solid skyblue;
+  width: 90%;
+  margin: 5%;
+}
+
+.word-button {
+  background-color: #212529;
+  color: whitesmoke;
+  border: none;
+  padding: 20px;
+  margin: 15px;
+  &:hover {
+    background-color: black;
+  }
+}

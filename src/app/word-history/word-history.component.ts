@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { FhService } from "../core/services/FH-service/fh.service";
 
 @Component({
-  selector: 'app-word-history',
-  templateUrl: './word-history.component.html',
-  styleUrls: ['./word-history.component.scss']
+  selector: "app-word-history",
+  templateUrl: "./word-history.component.html",
+  styleUrls: ["./word-history.component.scss"]
 })
 export class WordHistoryComponent implements OnInit {
+  historyWords: any;
 
-  constructor() { }
+  constructor(private fhApi: FhService) {}
 
   ngOnInit(): void {
+    this.fhApi.getFavouriteWords().subscribe(res => {
+      this.historyWords = res["rows"];
+    });
   }
-
 }

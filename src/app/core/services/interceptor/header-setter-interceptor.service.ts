@@ -22,7 +22,6 @@ export class HeaderSetterInterceptorService implements HttpInterceptor {
           password: password
         })
       });
-      console.log(modifyRequest);
       return next.handle(modifyRequest);  
     }
 

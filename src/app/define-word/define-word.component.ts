@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, ɵConsole } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap, Params } from "@angular/router";
 import { ApiService } from "../core/services/api/api.service";
+import { FhService } from "../core/services/FH-service/fh.service";
 declare const responsiveVoice: any;
 
 @Component({
@@ -16,12 +17,14 @@ export class DefineWordComponent implements OnInit {
 
   searchedWord: string;
   favouriteWord = false;
+  homeWord = false;
   wordDefinition: {};
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private api: ApiService
+    private api: ApiService,
+    private fhApi: FhService
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +37,13 @@ export class DefineWordComponent implements OnInit {
         this.api
           .getTranslation(this.searchedWord, params["destLanguage"])
           .subscribe(res => {
-            this.dictionaryData["Translate"] = res;
+            this.dictionaryData["Translate"] = res["translation"];
+            this.favouriteWord = res["favourite"];
+            this.homeWord = res["home"];
             if (this.dictionaryData["Translate"] !== undefined) {
               console.log(this.dictionaryData);
             }
+            console.log(res);
             this.dictionaryChanged();
           });
       }
@@ -120,5 +126,32 @@ export class DefineWordComponent implements OnInit {
 
   setFavouriteWord() {
     this.favouriteWord = !this.favouriteWord;
+
+    if (this.favouriteWord == true) {
+      this.fhApi.addFavouriteWord(this.searchedWord).subscribe(res => {
+        console.log(res);
+        console.log(this.searchedWord, "added to Favourite Word");
+      });
+    } else {
+      this.fhApi.deleteFavouriteWord(this.searchedWord).subscribe(res => {
+        console.log(res);
+        console.log(this.searchedWord, "removed from Favourite Word");
+      });
+    }
+  }
+
+  setHomeWord() {
+    this.homeWord = !this.homeWord;
+    if (this.homeWord == true) {
+      this.fhApi.addHomeWord(this.searchedWord).subscribe(res => {
+        console.log(res);
+        console.log(this.searchedWord, "added to Favourite Word");
+      });
+    } else {
+      this.fhApi.deleteHomeWord(this.searchedWord).subscribe(res => {
+        console.log(res);
+        console.log(this.searchedWord, "removed from Favourite Word");
+      });
+    }
   }
 }

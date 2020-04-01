@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../core/services/api/api.service';
+import { FhService } from '../core/services/FH-service/fh.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,15 @@ import { ApiService } from '../core/services/api/api.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private api: ApiService) { }
+  homeWords: any;
+  constructor(private fhApi: FhService) { }
 
   ngOnInit(): void {
+    this.fhApi.getHomeWords().subscribe(
+      res => {
+        this.homeWords = res['rows'];
+      }
+   )
   }
 
 }

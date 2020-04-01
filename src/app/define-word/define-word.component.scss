@@ -15,6 +15,7 @@ $border-color: rgb(86, 91, 96);
 
 .item {
     background-color: black;
+    border-left: 2px solid 629a62 ;
 }
 
 .item-header {
@@ -51,12 +52,12 @@ $border-color: rgb(86, 91, 96);
     color: #9c6bc9;
     padding-top: 20px;
     padding-left: 20px;
-    border-left: 3px solid #6695c7;
+    border-left: 3px solid #9c6bc9;
 }
 
 .example {
     color: #6f72e8;
-    border-left: 3px solid #6695c7;
+    border-left: 3px solid #6f72e8;
     padding-top: 7px;
     padding-left: 35px;
 }

@@ -8,6 +8,10 @@ import { environment } from "../../../../environments/environment";
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  authenticatedUser() {
+    return this.http.get(environment.apiUrl + "/api/login");
+  }
+
   getGD(word) {
     return this.http.get(environment.apiUrl + "/api/gd/" + word);
   }
@@ -29,7 +33,4 @@ export class ApiService {
     );
   }
 
-  authenticatedUser() {
-    return this.http.get(environment.apiUrl + "/api/login");
-  }
 }

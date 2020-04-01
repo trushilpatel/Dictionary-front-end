@@ -1,1 +1,6 @@
-<p>favourit-words works!</p>
+<div class="words">
+  <ng-container *ngFor="let row of favouriteWords">
+    <button class="word-button" type="button" [routerLink]="['/define',row[0]]" routerLinkActive="router-link-active" >{{row}}</button>
+  </ng-container>
+  
+</div>

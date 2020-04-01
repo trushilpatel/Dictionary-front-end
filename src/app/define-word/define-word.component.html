@@ -16,6 +16,17 @@
             </button>
           </span>
           <span class="word-heading">
+            <button *ngIf="homeWord === true" class="favourite" style="color: lightskyblue;"
+              (click)="setHomeWord()">
+              <i class="fa fa-home"></i>
+            </button>
+
+            <button *ngIf="homeWord === false" class="favourite" (click)="setHomeWord()">
+              <i class="fa fa-home"></i>
+            </button>
+          </span>
+
+          <span class="word-heading">
             <button class="audio" style="background-color: #181a1b;" (click)="speakWord(searchedWord)">
               <i class="fa fa-volume-up"></i>
             </button>
