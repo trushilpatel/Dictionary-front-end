@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ApiService } from "../core/services/api/api.service";
 import { FhService } from "../core/services/FH-service/fh.service";
 
@@ -15,6 +15,9 @@ export class FavouritWordsComponent implements OnInit {
   ngOnInit(): void {
     this.fhApi.getFavouriteWords().subscribe(res => {
       this.favouriteWords = res["rows"];
+
+      this.favouriteWords = this.favouriteWords.reverse();
+
     });
   }
 }

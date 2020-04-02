@@ -11,7 +11,7 @@ declare const responsiveVoice: any;
 })
 export class DefineWordComponent implements OnInit {
   dictionaries = ["Google", "Oxford", "MW"];
-  dictionaryChoice = "MW";
+  dictionaryChoice = "Google";
   dictionaryData = {};
   gotAudio = false;
 
@@ -29,17 +29,11 @@ export class DefineWordComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchedWord = this.route.snapshot.paramMap.get("word").trim();
-
-    this.fhApi.addHistoryWord(this.searchedWord).subscribe(
-      res => {
-        console.log(this.searchedWord, " Added to your History")
-      })
-    
-      this.route.params.subscribe((params: Params) => {
-      if (params["word"] == "") {
-        alert("please enter valid Word!!!");
+    this.route.params.subscribe((params: Params) => {
+      if (params["word"].trim() == "") {
+        alert("please enter valid Word!!! " + params["word"]);
       } else {
-        this.searchedWord = params["word"];
+        this.searchedWord = params["word"].trim();
         this.api
           .getTranslation(this.searchedWord, params["destLanguage"])
           .subscribe(res => {
@@ -52,6 +46,10 @@ export class DefineWordComponent implements OnInit {
             console.log(res);
             this.dictionaryChanged();
           });
+
+        this.fhApi.addHistoryWord(this.searchedWord).subscribe(res => {
+          console.log(this.searchedWord, " Added to your History");
+        });
       }
     });
   }

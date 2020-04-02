@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FhService } from "../core/services/FH-service/fh.service";
 
 @Component({
@@ -12,8 +12,9 @@ export class WordHistoryComponent implements OnInit {
   constructor(private fhApi: FhService) {}
 
   ngOnInit(): void {
-    this.fhApi.getFavouriteWords().subscribe(res => {
+    this.fhApi.getHistoryWords().subscribe(res => {
       this.historyWords = res["rows"];
+      this.historyWords = this.historyWords.reverse();
     });
   }
 }

@@ -12,7 +12,7 @@ export class FhService {
     return this.http.get(environment.apiUrl + "/api/add/history/" + word);
   }
   getHistoryWords() {
-    return this.http.get(environment.apiUrl + "/api/add/history");
+    return this.http.get(environment.apiUrl + "/api/get/history");
   }
   deleteHistoryWord(word) {
     return this.http.get(environment.apiUrl + "/api/delete/history/" + word);
