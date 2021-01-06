@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
@@ -24,13 +24,12 @@ export class ApiService {
     return this.http.get(environment.apiUrl + "/api/ox/" + word);
   }
 
-  getTranslation(word, destLanguage = undefined) {
-    if (destLanguage === undefined) {
-      return this.http.get(environment.apiUrl + "/api/trans/" + word);
-    }
-    return this.http.get(
-      environment.apiUrl + "/api/trans/" + destLanguage + "/" + word
-    );
-  }
-
+  // getTranslation(word, destLanguage = undefined) {
+  //   if (destLanguage === undefined) {
+  //     return this.http.get(environment.apiUrl + "/api/trans/" + word);
+  //   }
+  //   return this.http.get(
+  //     environment.apiUrl + "/api/trans/" + destLanguage + "/" + word
+  //   );
+  // }
 }

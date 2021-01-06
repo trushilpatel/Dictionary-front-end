@@ -7,7 +7,7 @@ declare const responsiveVoice: any;
 @Component({
   selector: "app-define-word",
   templateUrl: "./define-word.component.html",
-  styleUrls: ["./define-word.component.scss"]
+  styleUrls: ["./define-word.component.scss"],
 })
 export class DefineWordComponent implements OnInit {
   dictionaries = ["Google", "Oxford", "MW"];
@@ -34,20 +34,20 @@ export class DefineWordComponent implements OnInit {
         alert("please enter valid Word!!! " + params["word"]);
       } else {
         this.searchedWord = params["word"].trim();
-        this.api
-          .getTranslation(this.searchedWord, params["destLanguage"])
-          .subscribe(res => {
-            this.dictionaryData["Translate"] = res["translation"];
-            this.favouriteWord = res["favourite"];
-            this.homeWord = res["home"];
-            if (this.dictionaryData["Translate"] !== undefined) {
-              console.log(this.dictionaryData);
-            }
-            console.log(res);
-            this.dictionaryChanged();
-          });
+        // this.api
+        //   .getTranslation(this.searchedWord, params["destLanguage"])
+        //   .subscribe(res => {
+        //     this.dictionaryData["Translate"] = res["translation"];
+        //     this.favouriteWord = res["favourite"];
+        //     this.homeWord = res["home"];
+        //     if (this.dictionaryData["Translate"] !== undefined) {
+        //       console.log(this.dictionaryData);
+        //     }
+        //     console.log(res);
+        //     this.dictionaryChanged();
+        //   });
 
-        this.fhApi.addHistoryWord(this.searchedWord).subscribe(res => {
+        this.fhApi.addHistoryWord(this.searchedWord).subscribe((res) => {
           console.log(this.searchedWord, " Added to your History");
         });
       }
@@ -59,7 +59,7 @@ export class DefineWordComponent implements OnInit {
       case "Google": {
         this.wordDefinition = this.api
           .getGD(this.searchedWord)
-          .subscribe(res => {
+          .subscribe((res) => {
             this.changeScss();
             if (res["gd"]["title"] === undefined) {
               this.dictionaryData["Google"] = res["gd"];
@@ -74,7 +74,7 @@ export class DefineWordComponent implements OnInit {
       case "Oxford": {
         this.wordDefinition = this.api
           .getOX(this.searchedWord)
-          .subscribe(res => {
+          .subscribe((res) => {
             console.log(res);
 
             if (res["error"] === undefined) {
@@ -91,7 +91,7 @@ export class DefineWordComponent implements OnInit {
       case "MW": {
         this.wordDefinition = this.api
           .getMW(this.searchedWord)
-          .subscribe(res => {
+          .subscribe((res) => {
             this.changeScss();
             this.dictionaryData["MW"] = res["MWL"];
             console.log(res);
@@ -132,12 +132,12 @@ export class DefineWordComponent implements OnInit {
     this.favouriteWord = !this.favouriteWord;
 
     if (this.favouriteWord == true) {
-      this.fhApi.addFavouriteWord(this.searchedWord).subscribe(res => {
+      this.fhApi.addFavouriteWord(this.searchedWord).subscribe((res) => {
         console.log(res);
         console.log(this.searchedWord, "added to Favourite Word");
       });
     } else {
-      this.fhApi.deleteFavouriteWord(this.searchedWord).subscribe(res => {
+      this.fhApi.deleteFavouriteWord(this.searchedWord).subscribe((res) => {
         console.log(res);
         console.log(this.searchedWord, "removed from Favourite Word");
       });
@@ -147,12 +147,12 @@ export class DefineWordComponent implements OnInit {
   setHomeWord() {
     this.homeWord = !this.homeWord;
     if (this.homeWord == true) {
-      this.fhApi.addHomeWord(this.searchedWord).subscribe(res => {
+      this.fhApi.addHomeWord(this.searchedWord).subscribe((res) => {
         console.log(res);
         console.log(this.searchedWord, "added to Favourite Word");
       });
     } else {
-      this.fhApi.deleteHomeWord(this.searchedWord).subscribe(res => {
+      this.fhApi.deleteHomeWord(this.searchedWord).subscribe((res) => {
         console.log(res);
         console.log(this.searchedWord, "removed from Favourite Word");
       });

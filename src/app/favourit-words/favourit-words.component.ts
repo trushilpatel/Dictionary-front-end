@@ -14,6 +14,7 @@ export class FavouritWordsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fhApi.getFavouriteWords().subscribe(res => {
+      console.log(res);
       this.favouriteWords = res["rows"];
 
       this.favouriteWords = this.favouriteWords.reverse();
